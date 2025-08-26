@@ -1,52 +1,101 @@
 # sentiment-analysis-project
-Amazon Reviews Sentiment Analysis
-This project focuses on analyzing customer reviews from the Amazon Fine Food Reviews dataset (Reviews.csv). The main goal is to preprocess, clean, and build machine learning / deep learning models to classify reviews based on their sentiment.
-📂 Project Structure
-📦 sentiment-analysis
- ┣ 📜 Reviews.csv         # Dataset
- ┣ 📜 notebook.ipynb      # Jupyter Notebook with code
- ┣ 📜 README.md           # Project documentation
- ┣ 📜 requirements.txt    # Dependencies
- ┗ 📂 models/             # Saved trained models
-🚀 Getting Started
-1. Clone the repository
-git clone https://github.com/yourusername/sentiment-analysis.git
-cd sentiment-analysis
-2. Install dependencies
-pip install -r requirements.txt
-3. Run Jupyter Notebook
-jupyter notebook
-📊 Dataset
-File: Reviews.csv
-Columns:
-- Id → Review ID
-- ProductId → Unique product identifier
-- UserId → Reviewer’s ID
-- ProfileName → Reviewer’s name
-- HelpfulnessNumerator / HelpfulnessDenominator → Helpfulness score
-- Score → Rating (1–5 stars)
-- Time → Timestamp of review
-- Summary → Short text summary of review
-🧹 Data Cleaning
-1. Removed missing values and duplicates
-2. Converted timestamps to readable dates
-3. Lowercased and tokenized text data
-4. Removed stopwords, punctuation, and special characters
-🤖 Models Used
-- Logistic Regression (Baseline)
-- Naive Bayes
-- LSTM / RNN (Deep Learning)
-- Transformers (BERT-based, optional)
-📈 Evaluation
-Metrics: Accuracy, Precision, Recall, F1-score
-Visualizations: Confusion Matrix, ROC Curve
-📌 Results
-- Logistic Regression baseline achieved ~XX% accuracy
-- Deep Learning models improved results significantly
-🔮 Future Work
-- Improve preprocessing with lemmatization/stemming
-- Try advanced transformer-based models (BERT, DistilBERT)
-- Deploy as a web app (Flask / FastAPI + Streamlit for UI)
-🙌 Acknowledgements
-- Dataset: Amazon Fine Food Reviews (Kaggle)
-- Libraries: Pandas, Scikit-learn, TensorFlow/Keras, NLTK, Matplotlib
+
+
+# 📝 Sentiment Analysis with Deep Learning
+
+This project applies Natural Language Processing (NLP) and Deep Learning to classify customer reviews into **positive** or **negative** sentiments.  
+It leverages TensorFlow/Keras models with text vectorization for robust text classification.
+
+---
+
+## 📊 Dataset Overview
+
+- **Source**: `Reviews.csv`  
+- Contains customer reviews with sentiment labels (Positive / Negative).  
+- First few rows are loaded with `pandas.read_csv()` for exploration.
+
+---
+
+## 🧪 Exploratory Data Analysis (EDA)
+
+### Key Steps:
+1. **Data Inspection**  
+   - Checked dataset structure using `df.head()` and `df.info()`.
+   - Verified class distribution of sentiments.  
+
+2. **Visualizations**  
+   - Plotted sentiment counts.  
+   - Generated confusion matrix for model evaluation.  
+
+---
+
+## 🔧 Preprocessing
+
+1. **Text Vectorization**  
+   - Used `TextVectorization` layer from `tensorflow.keras.layers` to convert raw text into integer sequences.  
+
+2. **Train-Test Split**  
+   - Data split into training and testing sets using `train_test_split`.  
+
+3. **Normalization**  
+   - Converted all text to lowercase.  
+   - Removed punctuation/special characters automatically via vectorization.  
+
+---
+
+## 🧠 Modeling
+
+- Implemented a **Sequential Neural Network** using TensorFlow/Keras:  
+  - Input layer: Text vectorization  
+  - Hidden layers: Dense layers with activation functions  
+  - Output layer: Sigmoid for binary classification  
+
+### Training  
+- Trained with `model.fit()` for **10 epochs**.  
+- Monitored performance using **validation accuracy** and **loss curves**.  
+
+---
+
+## 📈 Evaluation
+
+- **Confusion Matrix**: Visualized using `seaborn.heatmap`.  
+- **Metrics**: Accuracy, precision, recall, F1-score.  
+- Example confusion matrix:  
+  - High accuracy on both Positive and Negative reviews.  
+
+---
+
+## 🔮 Predictions
+
+- Tested model with new unseen reviews:  
+  - `"This was the best purchase I have ever made, absolutely fantastic!"` → **Positive**  
+  - `"A complete waste of money. I would not recommend this product at all."` → **Negative**  
+  - `"The movie was just okay, not great but not terrible either."` → **Neutral-ish (classified accordingly)**  
+
+---
+
+## 🌟 Insights and Learnings
+
+- Deep learning models can effectively classify customer sentiments with high accuracy.  
+- Text vectorization simplifies preprocessing compared to manual tokenization.  
+- Confusion matrix highlights that some neutral reviews are harder to classify.  
+
+---
+
+## 🛠️ Tools and Technologies
+
+- **Libraries**:  
+  - `pandas`, `numpy`, `matplotlib`, `seaborn`  
+  - `sklearn` (train-test split, metrics)  
+  - `tensorflow`, `keras` (deep learning)  
+
+---
+
+## 🖋️ Conclusion
+
+This project demonstrates how **deep learning and NLP** can be used to automatically classify sentiment in reviews.  
+It provides a baseline that can be improved further with advanced embeddings (Word2Vec, BERT) and larger datasets.
+
+---
+
+Feel free to fork this repo ⭐, run the notebook, and improve the model. Contributions are always welcome!
